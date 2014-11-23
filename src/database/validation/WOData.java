@@ -7,9 +7,9 @@
 package database.validation;
 
 /**
- *
- * @author AdministratorJa
+ * Przechowuje dane z dailywo i raportu.
  */
+
 public class WOData {
     private int clientNumber;
     private int minTime;
@@ -55,5 +55,5 @@ public class WOData {
         return clientAddress;
     }
     
-    WOData(){}
+    public WOData(){}
 }
