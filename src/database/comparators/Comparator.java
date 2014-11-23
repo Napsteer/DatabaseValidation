@@ -4,29 +4,32 @@
  * and open the template in the editor.
  */
 
-package database.validation;
+package database.comparators;
 
+import database.validation.WOData;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author AdministratorJa
+ * Klasa porównuje dwie bazy danych.
+ * Zwraca wypełniony model tablicy JTable.
  */
+
 public class Comparator {
     private int validRecord;
     private int invalidRecord;
     private int unknownRecord;
     private DefaultTableModel finalModel;
     
-    Comparator(){}
+    public Comparator(){}
     
     public DefaultTableModel CompareDatabases(WOData[] master, WOData[] slave, JTable table)
     {
         finalModel = (DefaultTableModel) table.getModel();
         finalModel.setRowCount(master.length);
         CreateTableModel(master, slave);
+        CenterColumns(table);
         return finalModel;
     }
     
@@ -110,16 +113,13 @@ public class Comparator {
         return result;
     }
     
-    private void CenterColumns(JTable table, int[] columnNumbers)
+    private void CenterColumns(JTable table)
     {
-        for (int i=0;i<7;i++)
+        for (int i=0;i<table.getColumnCount();i++)
             {
-                if ((i==0) || (i==1) || (i==2) || (i==4) || (i==5) || (i==6))
-                {
-                    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-                    centerRenderer.setHorizontalAlignment( DefaultTableCellRenderer.CENTER );
-                    table.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
-                }
+                DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+                centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+                table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
             }
     }
 }
