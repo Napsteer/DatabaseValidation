@@ -15,12 +15,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- *
- * @author AdministratorJa
+ * ConfigFile przechowuje dane dotyczące ustawienia kolumn i wierszy
+ * w plikach dailywo i raportu. 
  */
+
 public class ConfigFile {
-    private File file;
-    private String fileName;
+    private final File file;
     private int dailyWOClientNumberCell; // Numer kolumny z wartością int, w której jest numer klienta
     private int dailyWOMinTimeCell; // Numer kolumny z wartością int, w której jest min godzina
     private int dailyWOMaxTimeCell; // Numer kolumny z wartością int, w której jest max godzina
@@ -29,24 +29,16 @@ public class ConfigFile {
     private int reportMinTimeCell; // Numer kolumny z wartością int, w której jest min godzina
     private int reportMaxTimeCell; // Numer kolumny z wartością int, w której jest max godzina
     private int reportAddressCell; // Numer kolumny z wartością int, w której jest adres klienta
+    private static final ConfigFile instance = new ConfigFile();
     
-    ConfigFile(String fileName)
+    private ConfigFile()
     {
-        this.fileName = fileName;
-        file = new File("config/"+fileName);
-    }
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
+        file = new File("config/config.cfg");
     }
     
-    public String getFilePath()
+    public static ConfigFile GetInstance()
     {
-        return file.getPath();
+        return instance;
     }
     
     public void getConfiguration() throws IOException
@@ -187,13 +179,5 @@ public class ConfigFile {
 
     public void setReportAddressCell(int reportAddressCell) {
         this.reportAddressCell = reportAddressCell;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 }
