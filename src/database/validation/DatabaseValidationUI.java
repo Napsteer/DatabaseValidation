@@ -6,9 +6,10 @@
 
 package database.validation;
 
+import database.comparators.*;
+import database.scanners.*;
 import java.io.*;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -344,19 +345,21 @@ public class DatabaseValidationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void ScanDailyWOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScanDailyWOButtonActionPerformed
-        if (dailyWOFile != null) dailyWO = DatabaseValidation.ScanDatabase(dailyWOFile.getPath(), "dailywo");
+        DailyWOScanner dailyWOScanner = new DailyWOScanner();
+        if (dailyWOFile != null) dailyWO = dailyWOScanner.ScanDatabase(dailyWOFile.getPath());
         FillTable(DailyWOTable, dailyWO);
     }//GEN-LAST:event_ScanDailyWOButtonActionPerformed
 
     private void ScanReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScanReportButtonActionPerformed
-        if (reportFile != null) report = DatabaseValidation.ScanDatabase(reportFile.getPath(), "report");
+        ReportScanner reportScanner = new ReportScanner();
+        if (reportFile != null) report = reportScanner.ScanDatabase(reportFile.getPath());
         FillTable(ReportTable, report);
     }//GEN-LAST:event_ScanReportButtonActionPerformed
 
     private void ValidateDatabasesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidateDatabasesButtonActionPerformed
         if ((dailyWO != null) && (report != null))
         {
-            comparator = new Comparator();
+            Comparator comparator = new Comparator();
             ValidationTable.setModel(comparator.CompareDatabases(dailyWO, report, ValidationTable));
             SetStatus(comparator.GetOverallStatus());
         }
@@ -370,7 +373,7 @@ public class DatabaseValidationUI extends javax.swing.JFrame {
     private File reportFile;
     private WOData[] dailyWO;
     private WOData[] report;
-    private Comparator comparator;
+
     
     
     public static void main(String args[]) {
