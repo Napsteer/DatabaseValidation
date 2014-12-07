@@ -61,6 +61,8 @@ public class DatabaseValidationUI extends javax.swing.JFrame {
         MainMenu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jFileChooser1.setCurrentDirectory(new java.io.File("C:\\Program Files\\NetBeans 8.0\\null"));
 
@@ -156,7 +158,6 @@ public class DatabaseValidationUI extends javax.swing.JFrame {
         jScrollPane3.setViewportView(ValidationTable);
         if (ValidationTable.getColumnModel().getColumnCount() > 0) {
             ValidationTable.getColumnModel().getColumn(0).setPreferredWidth(80);
-            ValidationTable.getColumnModel().getColumn(0).setCellRenderer(null);
             ValidationTable.getColumnModel().getColumn(1).setPreferredWidth(60);
             ValidationTable.getColumnModel().getColumn(2).setPreferredWidth(60);
             ValidationTable.getColumnModel().getColumn(3).setPreferredWidth(270);
@@ -293,6 +294,18 @@ public class DatabaseValidationUI extends javax.swing.JFrame {
 
         MainMenu.add(jMenu1);
 
+        jMenu2.setText("Edycja");
+
+        jMenuItem2.setText("Zmień");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        MainMenu.add(jMenu2);
+
         setJMenuBar(MainMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -364,6 +377,10 @@ public class DatabaseValidationUI extends javax.swing.JFrame {
             SetStatus(comparator.GetOverallStatus());
         }
     }//GEN-LAST:event_ValidateDatabasesButtonActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        EditCellNumbersFrame editCellNumbersFrame = new EditCellNumbersFrame();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -468,7 +485,9 @@ public class DatabaseValidationUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
