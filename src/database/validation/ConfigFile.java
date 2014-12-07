@@ -51,7 +51,7 @@ public class ConfigFile {
         }
         else
         {
-            createDefaultConfigFile(file.getPath());
+            CreateDefaultConfigFile(file.getPath());
             readConfigFile(file.getPath());
         }
     }
@@ -95,7 +95,7 @@ public class ConfigFile {
         br.close();
     }
     
-    private void createDefaultConfigFile(String filePath) throws IOException
+    private void CreateDefaultConfigFile(String filePath) throws IOException
     {
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
         bw.append("#dailyWOClientNumberCell\n");
@@ -115,6 +115,32 @@ public class ConfigFile {
         bw.append("#reportAddressCell\n");
         bw.append("5\n");
         bw.close();
+    }
+    
+    public void SaveConfigFile()
+    {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file.getPath()))) {
+            bw.write("#dailyWOClientNumberCell\n");
+            bw.append(dailyWOClientNumberCell + "\n");
+            bw.append("#dailyWOMinTimeCell\n");
+            bw.append(dailyWOMinTimeCell + "\n");
+            bw.append("#dailyWOMaxTimeCell\n");
+            bw.append(dailyWOMaxTimeCell + "\n");
+            bw.append("#dailyWOAddressCell\n");
+            bw.append(dailyWOAddressCell + "\n");
+            bw.append("#reportClientNumberCell\n");
+            bw.append(reportClientNumberCell + "\n");
+            bw.append("#reportMinTimeCell\n");
+            bw.append(reportMinTimeCell + "\n");
+            bw.append("#reportMaxTimeCell\n");
+            bw.append(reportMaxTimeCell + "\n");
+            bw.append("#reportAddressCell\n");
+            bw.append(reportAddressCell + "\n");
+        }
+        catch(IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
     public int getDailyWOClientNumberCell() {
